@@ -1,0 +1,40 @@
+spring:
+  profiles: dev
+  application:
+    name: eureka-client
+server:
+  port: 9101
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl.defaultZone: http://server1:9001/eureka/
+  instance:
+    hostname: client01
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+---        
+spring:
+  profiles: test
+  application:
+    name: eureka-client
+server:
+  port: 9105
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl.defaultZone: http://server1:9001/eureka/
+  instance:
+    hostname: client01
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream        
+        
